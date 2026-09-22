@@ -1,0 +1,236 @@
+/* =========================================================================
+   Mijal Iastrebner — Design Tokens
+   Colors, type, spacing, radii, shadows.
+   Source: mijal.org (production site) + Logo mijal.org.pdf brand guidelines.
+   ========================================================================= */
+
+/* =========================================================================
+   Fonts
+   Lato is self-hosted from fonts/ (user-supplied TTFs).
+   Playfair Display is still loaded from Google Fonts in the HTML <head>:
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,800&display=swap" rel="stylesheet">
+   ========================================================================= */
+
+/* --- Lato (self-hosted) --- paths assume this CSS sits at project root.  */
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 100; font-display: swap;
+  src: url('fonts/Lato-Thin.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: italic; font-weight: 100; font-display: swap;
+  src: url('fonts/Lato-ThinItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 300; font-display: swap;
+  src: url('fonts/Lato-Light.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: italic; font-weight: 300; font-display: swap;
+  src: url('fonts/Lato-LightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/Lato-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: italic; font-weight: 400; font-display: swap;
+  src: url('fonts/Lato-Italic.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('fonts/Lato-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: italic; font-weight: 700; font-display: swap;
+  src: url('fonts/Lato-BoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 900; font-display: swap;
+  src: url('fonts/Lato-Black.ttf') format('truetype'); }
+@font-face { font-family: 'Lato'; font-style: italic; font-weight: 900; font-display: swap;
+  src: url('fonts/Lato-BlackItalic.ttf') format('truetype'); }
+
+:root {
+  /* ---------- Brand palette (named in Spanish, as on site) -------------- */
+  --menta:    #B5E2E1;   /* mint           — soft secondary, accents, tags */
+  --naranja:  #F66C39;   /* signature orange — hero, primary CTA           */
+  --crema:    #E9E3DB;   /* warm cream    — section backgrounds            */
+  --lila:     #D6B5F2;   /* lilac         — soft tertiary, services card   */
+  --violeta:  #4C3AB5;   /* deep violet   — primary brand, links, stats    */
+
+  /* ---------- Neutrals --------------------------------------------------- */
+  /* No separate neutral ramp — use palette colors as neutrals. The palette
+     itself spans light→dark (blanco → crema → lila → violeta → ink) so
+     surfaces and type pick from the same family. */
+  --blanco:     #FFFCF9; /* page background — warm off-white                */
+  --ink-muted:  #7A7090; /* tertiary text / meta (muted violet)             */
+  --ink-light:  #4A4060; /* secondary body text                             */
+  --ink:        #1E1639; /* primary text — deep violet-black                */
+
+  /* ---------- Semantic foreground / background aliases ------------------ */
+  --fg-1: var(--ink);
+  --fg-2: var(--ink-light);
+  --fg-3: var(--ink-muted);
+  --bg-page:    var(--blanco);
+  --bg-warm:    var(--crema);
+  --bg-accent:  var(--naranja);
+  --bg-primary: var(--violeta);
+  --bg-dark:    var(--ink);
+
+  /* ---------- Type families --------------------------------------------- */
+  --font-display: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  --font-body:    'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---------- Type scale (px @ 16px root) ------------------------------- */
+  --fs-display:  3.8rem;   /* 60.8 — hero name, italic                     */
+  --fs-h1:       2.4rem;   /* 38.4 — section titles                        */
+  --fs-h2:       1.9rem;   /* 30.4 — stat numbers, large display           */
+  --fs-h3:       1.2rem;   /* 19.2 — card titles                           */
+  --fs-body-lg:  1.08rem;  /* 17.3 — hero description                      */
+  --fs-body:     1rem;     /* 16   — base paragraph                        */
+  --fs-body-sm:  0.96rem;  /* 15.4 — about text, library intro             */
+  --fs-small:    0.86rem;  /* 13.8 — service descriptions                  */
+  --fs-caption:  0.8rem;   /* 12.8 — buttons, nav                          */
+  --fs-eyebrow:  0.72rem;  /* 11.5 — section tags, uppercase               */
+  --fs-micro:    0.62rem;  /* 10   — library card type label               */
+
+  /* ---------- Weights --------------------------------------------------- */
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-bold:    700;
+  --fw-black:   900;
+  --fw-display-italic: 800; /* hero treatment */
+
+  /* ---------- Line height & tracking ------------------------------------ */
+  --lh-tight:  1.08;   /* hero display                                     */
+  --lh-snug:   1.2;    /* section titles                                   */
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;   /* body default                                     */
+  --lh-loose:  1.8;    /* about paragraphs                                 */
+
+  --track-eyebrow: 0.15em;  /* 150 — Uppercase eyebrows                    */
+  --track-button:  0.06em;  /*  60 — Button labels                         */
+  --track-label:   0.1em;   /* 100 — Small caps labels                     */
+
+  /* ---------- Spacing --------------------------------------------------- */
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4  */
+  --space-2:  0.5rem;    /* 8  */
+  --space-3:  0.8rem;    /* 13 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.5rem;    /* 24 */
+  --space-6:  2rem;      /* 32 */
+  --space-7:  3rem;      /* 48 */
+  --space-8:  4.5rem;    /* 72 */
+  --space-9:  5rem;      /* 80 — section vertical padding                  */
+
+  /* ---------- Radii ----------------------------------------------------- */
+  --radius-xs:  5px;     /* language pill                                   */
+  --radius-sm:  6px;     /* small buttons                                   */
+  --radius-md:  8px;     /* primary buttons, nav CTA                        */
+  --radius-lg:  14px;    /* library cards                                   */
+  --radius-xl:  16px;    /* services cards                                  */
+  --radius-2xl: 20px;    /* photo frames, stats banner                      */
+  --radius-3xl: 24px;    /* hero portrait frame                             */
+  --radius-pill: 9999px;
+
+  /* ---------- Shadows --------------------------------------------------- */
+  --shadow-nav:     0 1px 20px rgba(30, 22, 57, 0.08);     /* scrolled nav  */
+  --shadow-card:    0 12px 30px rgba(30, 22, 57, 0.12);    /* card hover    */
+  --shadow-cta:     0 8px 25px rgba(0, 0, 0, 0.20);        /* dark btn hover*/
+  --shadow-pop:     0 8px 20px rgba(0, 0, 0, 0.08);        /* mobile menu   */
+
+  /* ---------- Motion ---------------------------------------------------- */
+  --ease-soft:   cubic-bezier(.4, .0, .2, 1);
+  --dur-quick:   0.3s;
+  --dur-medium:  0.4s;
+  --dur-slow:    0.6s;
+
+  /* ---------- Layout widths --------------------------------------------- */
+  --maxw-content: 1100px;
+  --maxw-prose:   720px;
+  --maxw-stats:   900px;
+}
+
+/* =========================================================================
+   Semantic element styles
+   Use these directly, or as a reference when styling components.
+   ========================================================================= */
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--fg-1);
+  line-height: var(--lh-relaxed);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); }
+
+/* Hero display — italic is the signature treatment */
+.t-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, var(--fs-display));
+  font-weight: var(--fw-display-italic);
+  font-style: italic;
+  line-height: var(--lh-tight);
+}
+
+/* Section title — Playfair, not italic, medium weight */
+.t-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, var(--fs-h1));
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+/* Stat numbers — Playfair, bold */
+.t-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  line-height: 1;
+}
+
+/* Card titles */
+.t-h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+}
+
+/* Body paragraph */
+.t-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+}
+
+/* Lead body — hero description */
+.t-lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  line-height: 1.75;
+  color: inherit;
+}
+
+/* Eyebrow — uppercase small-caps tag above titles */
+.t-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--naranja);
+}
+
+/* Button label */
+.t-button {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+}
+
+/* Micro label — library card type tags */
+.t-micro {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+code, .t-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+}
